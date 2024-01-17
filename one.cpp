@@ -1,7 +1,6 @@
 // 2513. Minimize the Maximum of Two Arrays
 
-#include <iostream>
-#include <numeric>
+#define min(a, b) (a < b ? a : b)
 #define ll long long
 #define INT_MAX 10 ^ 9
 #define min(a, b) ((a < b) ? a : b)
@@ -17,7 +16,11 @@ public:
 
         // applying binary search to reduce size of total array recursively to 1-(mid-1)
 
-        while (l <= h)
+        while (l <= h) /*
+       why WRONG Answer for l<h
+
+
+       */
         {
             ll mid = (l + h) / 2;
             if (satisfy(div1, div2, c1, c2, mid))
@@ -44,5 +47,22 @@ public:
             return true;
         else
             return false;
+    }
+
+    int hcf(int d1, int d2)
+    {
+        int ans = min(d1, d2);
+        while (ans > 0)
+        {
+            if (d1 % ans == 0 && d2 % ans == 0)
+                return ans;
+
+            ans--;
+        }
+    }
+
+    int lcm(int d1, int d2, int lcm)
+    {
+        return d1 * d2 / hcf(d1, d2);
     }
 };
