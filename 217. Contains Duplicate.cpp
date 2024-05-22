@@ -24,4 +24,23 @@ public:
 
         return false;
     }
+
+// Better approach (no need to count & O(1)
+
+bool BettercontainsDuplicate(vector<int>& nums) {
+        
+        unordered_map<int,int> dupli;
+
+        for (int num : nums)
+        {
+            if (dupli[num] >= 1)
+                return true;
+
+            else
+            // unordered_map[key]; creates a correspondin key = 0
+                dupli[num]++;
+        }
+
+        return false;
+    }
 }; 
